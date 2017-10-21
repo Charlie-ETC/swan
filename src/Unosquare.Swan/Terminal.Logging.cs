@@ -8,7 +8,7 @@
     /// A console terminal helper to create nicer output and receive input from the user
     /// This class is thread-safe :)
     /// </summary>
-    public partial class Terminal
+    public static partial class Terminal
     {
         #region Private Declarations
 
@@ -60,10 +60,10 @@
             lock (SyncLock)
             {
                 #region Color and Prefix
-
+                
                 ConsoleColor color;
                 string prefix;
-
+                
                 // Select color and prefix based on message type
                 // and settings
                 switch (messageType)
@@ -94,9 +94,9 @@
                         break;
                 }
 
-                #endregion
+#endregion
 
-                #region Create and Format the Output
+#region Create and Format the Output
 
                 var sequence = _loggingSequence;
                 var date = DateTime.UtcNow;
@@ -126,9 +126,9 @@
                     callerFilePath, 
                     callerLineNumber);
 
-                #endregion
+#endregion
 
-                #region Fire Up External Logging Logic (Asynchronously)
+#region Fire Up External Logging Logic (Asynchronously)
 
                 if (OnLogMessageReceived != null)
                 {
@@ -145,9 +145,9 @@
                     });
                 }
 
-                #endregion
+#endregion
 
-                #region Display the Message by Writing to the Output Queue
+#region Display the Message by Writing to the Output Queue
 
                 // Check if we are skipping these messages to be displayed based on settings
                 if (Settings.DisplayLoggingMessageType.HasFlag(messageType) == false)
@@ -188,15 +188,15 @@
                 if (displayingEventArgs.CancelOutput == false)
                     outputMessage.WriteLine(color, writer);
 
-                #endregion
+#endregion
             }
         }
 
-        #endregion
+#endregion
 
-        #region Standard Public API
+#region Standard Public API
 
-        #region Debug
+#region Debug
 
         /// <summary>
         /// Logs a debug message to the console
@@ -258,9 +258,9 @@
             LogMessage(LogMessageType.Debug, message, source, extendedData, callerMemberName, callerFilePath, callerLineNumber);
         }
 
-        #endregion
+#endregion
 
-        #region Trace
+#region Trace
 
         /// <summary>
         /// Logs a trace message to the console
@@ -322,9 +322,9 @@
             LogMessage(LogMessageType.Trace, message, source, extendedData, callerMemberName, callerFilePath, callerLineNumber);
         }
 
-        #endregion
+#endregion
 
-        #region Warn
+#region Warn
 
         /// <summary>
         /// Logs a warning message to the console
@@ -386,9 +386,9 @@
             LogMessage(LogMessageType.Warning, message, source, extendedData, callerMemberName, callerFilePath, callerLineNumber);
         }
 
-        #endregion
+#endregion
 
-        #region Info
+#region Info
 
         /// <summary>
         /// Logs an info message to the console
@@ -450,9 +450,9 @@
             LogMessage(LogMessageType.Info, message, source, extendedData, callerMemberName, callerFilePath, callerLineNumber);
         }
 
-        #endregion
+#endregion
 
-        #region Error
+#region Error
 
         /// <summary>
         /// Logs an error message to the console's standard error
@@ -514,11 +514,11 @@
             LogMessage(LogMessageType.Error, message, source, ex, callerMemberName, callerFilePath, callerLineNumber);
         }
 
-        #endregion
+#endregion
 
-        #endregion
+#endregion
 
-        #region Extended Public API
+#region Extended Public API
 
         /// <summary>
         /// Logs the specified message.
@@ -650,6 +650,6 @@
             LogMessage(LogMessageType.Trace, message, source?.FullName, obj, callerMemberName, callerFilePath, callerLineNumber);
         }
 
-        #endregion
+#endregion
     }
 }

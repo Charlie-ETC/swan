@@ -1,4 +1,5 @@
-﻿namespace Unosquare.Swan.Networking
+﻿#if !WINDOWS_UWP
+namespace Unosquare.Swan.Networking
 {
     using System;
     using System.Collections.Generic;
@@ -274,3 +275,4 @@
         }
     }
 }
+#endif

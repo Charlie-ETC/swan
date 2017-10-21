@@ -1,4 +1,5 @@
-﻿namespace Unosquare.Swan.Networking
+﻿#if !WINDOWS_UWP
+namespace Unosquare.Swan.Networking
 {
     using Swan;
     using System;
@@ -14,7 +15,7 @@
     /// <seealso cref="System.IDisposable" />
     public sealed class ConnectionListener : IDisposable
     {
-        #region Events
+#region Events
 
         /// <summary>
         /// Occurs when a new connection requests a socket from the listener.
@@ -37,9 +38,9 @@
         /// </summary>
         public event EventHandler<ConnectionListenerStoppedEventArgs> OnListenerStopped = (s, e) => { };
 
-        #endregion
+#endregion
 
-        #region Private Declarations
+#region Private Declarations
 
         private readonly object _stateLock = new object();
         private TcpListener _listenerSocket;
@@ -48,9 +49,9 @@
         private Task _backgroundWorkerTask;
         private bool _hasDisposed;
 
-        #endregion
+#endregion
 
-        #region Public Properties
+#region Public Properties
 
         /// <summary>
         /// Gets the local end point on which we are listening.
@@ -67,9 +68,9 @@
         /// </summary>
         public Guid Id { get; }
 
-        #endregion
+#endregion
 
-        #region Constructors
+#region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionListener"/> class.
@@ -101,9 +102,9 @@
         {
         }
 
-        #endregion
+#endregion
 
-        #region Start and Stop
+#region Start and Stop
 
         /// <summary>
         /// Starts the listener in an asynchronous, non-blocking fashion.
@@ -214,9 +215,9 @@
             return LocalEndPoint.ToString();
         }
 
-        #endregion
+#endregion
 
-        #region Dispose
+#region Dispose
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -253,6 +254,7 @@
             _hasDisposed = true;
         }
 
-        #endregion
+#endregion
     }
 }
+#endif

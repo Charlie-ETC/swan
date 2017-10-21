@@ -417,7 +417,7 @@ namespace Unosquare.Swan.Components
 
         #region Registration
 
-#if !NETSTANDARD1_3 && !UWP
+#if !NETSTANDARD1_3 && !UWP && !WINDOWS_UWP
         /// <summary>
         /// Attempt to automatically register all non-generic classes and interfaces in the current app domain.
         /// Types will only be registered if they pass the supplied registration predicate.

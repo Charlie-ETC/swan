@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7ABA7E6C-54A8-4D07-A59A-049AB6E705FB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Unosquare.Swan</RootNamespace>
+    <AssemblyName>Unosquare.Swan</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.15063.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\Unosquare.Swan\Abstractions\AppWorkerBase.cs">
+      <Link>Abstractions\AppWorkerBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Abstractions\AppWorkerStateChangedEventArgs.cs">
+      <Link>Abstractions\AppWorkerStateChangedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Abstractions\SettingsProvider.cs">
+      <Link>Abstractions\SettingsProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Abstractions\SingletonBase.cs">
+      <Link>Abstractions\SingletonBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Attributes\ArgumentOptionAttribute.cs">
+      <Link>Attributes\ArgumentOptionAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Attributes\CopyableAttribute.cs">
+      <Link>Attributes\CopyableAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Attributes\JsonPropertyAttribute.cs">
+      <Link>Attributes\JsonPropertyAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Attributes\PropertyDisplayAttribute.cs">
+      <Link>Attributes\PropertyDisplayAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Attributes\StructEndiannessAttribute.cs">
+      <Link>Attributes\StructEndiannessAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Components\ArgumentParser.cs">
+      <Link>Components\ArgumentParser.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Components\ArgumentParserSettings.cs">
+      <Link>Components\ArgumentParserSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Components\CircularBuffer.cs">
+      <Link>Components\CircularBuffer.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Components\DependencyContainer.cs">
+      <Link>Components\DependencyContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Components\EnumHelper.cs">
+      <Link>Components\EnumHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Components\IObjectMap.cs">
+      <Link>Components\IObjectMap.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Components\MessageHub.cs">
+      <Link>Components\MessageHub.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Components\ObjectComparer.cs">
+      <Link>Components\ObjectComparer.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Components\ObjectMap.cs">
+      <Link>Components\ObjectMap.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Components\ObjectMapper.cs">
+      <Link>Components\ObjectMapper.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Components\ProcessResult.cs">
+      <Link>Components\ProcessResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Components\ProcessRunner.cs">
+      <Link>Components\ProcessRunner.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Definitions.cs">
+      <Link>Definitions.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Definitions.Smtp.cs">
+      <Link>Definitions.Smtp.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Definitions.Types.cs">
+      <Link>Definitions.Types.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Enums.cs">
+      <Link>Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Enums.Dns.cs">
+      <Link>Enums.Dns.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Enums.Smtp.cs">
+      <Link>Enums.Smtp.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Enums.Terminal.cs">
+      <Link>Enums.Terminal.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Eventing.ConnectionListener.cs">
+      <Link>Eventing.ConnectionListener.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Eventing.cs">
+      <Link>Eventing.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Exceptions\DependencyContainerAutoRegistrationException.cs">
+      <Link>Exceptions\DependencyContainerAutoRegistrationException.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Exceptions\DependencyContainerConstructorResolutionException.cs">
+      <Link>Exceptions\DependencyContainerConstructorResolutionException.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Exceptions\DependencyContainerRegistrationException.cs">
+      <Link>Exceptions\DependencyContainerRegistrationException.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Exceptions\DependencyContainerRegistrationTypeException.cs">
+      <Link>Exceptions\DependencyContainerRegistrationTypeException.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Exceptions\DependencyContainerResolutionException.cs">
+      <Link>Exceptions\DependencyContainerResolutionException.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Exceptions\DependencyContainerWeakReferenceException.cs">
+      <Link>Exceptions\DependencyContainerWeakReferenceException.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Exceptions\DnsQueryException.cs">
+      <Link>Exceptions\DnsQueryException.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Exceptions\JsonRequestException.cs">
+      <Link>Exceptions\JsonRequestException.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Exceptions\MessageHubSubscriptionException.cs">
+      <Link>Exceptions\MessageHubSubscriptionException.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Exceptions\SmtpException.cs">
+      <Link>Exceptions\SmtpException.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Extensions.ByteArrays.cs">
+      <Link>Extensions.ByteArrays.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Extensions.cs">
+      <Link>Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Extensions.Dates.cs">
+      <Link>Extensions.Dates.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Extensions.Dictionaries.cs">
+      <Link>Extensions.Dictionaries.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Extensions.Functional.cs">
+      <Link>Extensions.Functional.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Extensions.MimeMessage.cs">
+      <Link>Extensions.MimeMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Extensions.Network.cs">
+      <Link>Extensions.Network.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Extensions.Reflection.cs">
+      <Link>Extensions.Reflection.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Extensions.Strings.cs">
+      <Link>Extensions.Strings.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Extensions.ValueTypes.cs">
+      <Link>Extensions.ValueTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Extensions.WindowsServices.cs">
+      <Link>Extensions.WindowsServices.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Formatters\BitmapBuffer.cs">
+      <Link>Formatters\BitmapBuffer.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Formatters\CsvReader.cs">
+      <Link>Formatters\CsvReader.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Formatters\CsvWriter.cs">
+      <Link>Formatters\CsvWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Formatters\Json.cs">
+      <Link>Formatters\Json.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Formatters\Json.Deserializer.cs">
+      <Link>Formatters\Json.Deserializer.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Formatters\Json.Serializer.cs">
+      <Link>Formatters\Json.Serializer.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Models\OkOrError.cs">
+      <Link>Models\OkOrError.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Network.cs">
+      <Link>Network.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Connection.cs">
+      <Link>Networking\Connection.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\ConnectionListener.cs">
+      <Link>Networking\ConnectionListener.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\DnsClient.cs">
+      <Link>Networking\DnsClient.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\DnsClient.Interfaces.cs">
+      <Link>Networking\DnsClient.Interfaces.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\DnsClient.Request.cs">
+      <Link>Networking\DnsClient.Request.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\DnsClient.ResourceRecords.cs">
+      <Link>Networking\DnsClient.ResourceRecords.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\DnsClient.Response.cs">
+      <Link>Networking\DnsClient.Response.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\DnsQueryResult.cs">
+      <Link>Networking\DnsQueryResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\DnsRecord.cs">
+      <Link>Networking\DnsRecord.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\JsonClient.cs">
+      <Link>Networking\JsonClient.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\Asn1.cs">
+      <Link>Networking\Ldap\Asn1.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\IAsn1Decoder.cs">
+      <Link>Networking\Ldap\IAsn1Decoder.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\IAsn1Encoder.cs">
+      <Link>Networking\Ldap\IAsn1Encoder.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LBERDecoder.cs">
+      <Link>Networking\Ldap\LBERDecoder.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LBEREncoder.cs">
+      <Link>Networking\Ldap\LBEREncoder.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LdapConnection.cs">
+      <Link>Networking\Ldap\LdapConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LdapConstraints.cs">
+      <Link>Networking\Ldap\LdapConstraints.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LdapControl.cs">
+      <Link>Networking\Ldap\LdapControl.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LdapEntry.cs">
+      <Link>Networking\Ldap\LdapEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LdapException.cs">
+      <Link>Networking\Ldap\LdapException.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LdapMessage.cs">
+      <Link>Networking\Ldap\LdapMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LdapModification.cs">
+      <Link>Networking\Ldap\LdapModification.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LdapModifyrequest.cs">
+      <Link>Networking\Ldap\LdapModifyrequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LdapOperation.cs">
+      <Link>Networking\Ldap\LdapOperation.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LdapSearchRequest.cs">
+      <Link>Networking\Ldap\LdapSearchRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LdapSearchResults.cs">
+      <Link>Networking\Ldap\LdapSearchResults.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\LdapStatusCode.cs">
+      <Link>Networking\Ldap\LdapStatusCode.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\Message.cs">
+      <Link>Networking\Ldap\Message.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\RfcControl.cs">
+      <Link>Networking\Ldap\RfcControl.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\RfcFilter.cs">
+      <Link>Networking\Ldap\RfcFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\RfcLdap.cs">
+      <Link>Networking\Ldap\RfcLdap.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\RfcLdapMessage.cs">
+      <Link>Networking\Ldap\RfcLdapMessage.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\Ldap\RfcModifyRequest.cs">
+      <Link>Networking\Ldap\RfcModifyRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\SmtpClient.cs">
+      <Link>Networking\SmtpClient.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\SmtpServerReply.cs">
+      <Link>Networking\SmtpServerReply.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\SmtpSessionState.cs">
+      <Link>Networking\SmtpSessionState.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Networking\SnmpClient.cs">
+      <Link>Networking\SnmpClient.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Reflection\AssemblyInfo.cs">
+      <Link>Reflection\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Reflection\ExtendedPropertyInfo.cs">
+      <Link>Reflection\ExtendedPropertyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Reflection\ExtendedTypeInfo.cs">
+      <Link>Reflection\ExtendedTypeInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Reflection\TypeCache.cs">
+      <Link>Reflection\TypeCache.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Runtime.cs">
+      <Link>Runtime.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Terminal.cs">
+      <Link>Terminal.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Terminal.Graphics.cs">
+      <Link>Terminal.Graphics.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Terminal.Interaction.cs">
+      <Link>Terminal.Interaction.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Terminal.Logging.cs">
+      <Link>Terminal.Logging.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Terminal.Output.cs">
+      <Link>Terminal.Output.cs</Link>
+    </Compile>
+    <Compile Include="..\Unosquare.Swan\Terminal.Settings.cs">
+      <Link>Terminal.Settings.cs</Link>
+    </Compile>
+    <Compile Include="Console.cs" />
+    <Compile Include="ConsoleColor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Unosquare.Swan.Uwp.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>6.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

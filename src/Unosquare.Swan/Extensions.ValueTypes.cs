@@ -121,7 +121,7 @@
 
         private static byte[] GetStructBytes<T>(byte[] data)
         {
-#if !NETSTANDARD1_3 && !UWP
+#if !NETSTANDARD1_3 && !UWP && !WINDOWS_UWP
             var fields = typeof(T).GetTypeInfo().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 #else
             var fields = typeof(T).GetTypeInfo().DeclaredFields;

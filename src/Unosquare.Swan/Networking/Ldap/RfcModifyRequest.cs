@@ -1,4 +1,4 @@
-﻿#if !UWP
+﻿#if !UWP && !WINDOWS_UWP
 namespace Unosquare.Swan.Networking.Ldap
 {
     using System.IO;

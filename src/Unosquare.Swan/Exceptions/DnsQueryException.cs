@@ -1,4 +1,5 @@
-﻿namespace Unosquare.Swan.Exceptions
+﻿#if !WINDOWS_UWP
+namespace Unosquare.Swan.Exceptions
 {
     using System;
     using Networking;
@@ -48,3 +49,4 @@
         }
     }
 }
+#endif

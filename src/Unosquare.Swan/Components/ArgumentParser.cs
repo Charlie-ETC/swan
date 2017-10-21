@@ -1,4 +1,5 @@
-﻿namespace Unosquare.Swan.Components
+﻿#if !WINDOWS_UWP
+namespace Unosquare.Swan.Components
 {
     using Reflection;
     using System;
@@ -135,7 +136,7 @@
 
             if ((Settings.IgnoreUnknownArguments || !unknownList.Any()) && !requiredList.Any()) return true;
 
-#if !NETSTANDARD1_3 && !UWP
+#if !NETSTANDARD1_3 && !UWP && !WINDOWS_UWP
                 if (Settings.WriteBanner)
                     Runtime.WriteWelcomeBanner();
 #endif
@@ -246,3 +247,4 @@
         }
     }
 }
+#endif

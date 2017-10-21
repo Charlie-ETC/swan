@@ -1,4 +1,5 @@
-﻿namespace Unosquare.Swan
+﻿#if !WINDOWS_UWP
+namespace Unosquare.Swan
 {
     using Networking;
     using System;
@@ -428,3 +429,4 @@
         }
     }
 }
+#endif

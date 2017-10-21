@@ -1,4 +1,5 @@
-﻿namespace Unosquare.Swan.Networking
+﻿#if !WINDOWS_UWP
+namespace Unosquare.Swan.Networking
 {
     using System.Collections.Generic;
 
@@ -121,3 +122,4 @@
         public IList<DnsRecord> AuthorityRecords => m_AuthorityRecords;
     }
 }
+#endif

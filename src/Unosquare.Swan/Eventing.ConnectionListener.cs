@@ -1,4 +1,5 @@
-﻿namespace Unosquare.Swan
+﻿#if !WINDOWS_UWP
+namespace Unosquare.Swan
 {
     using System;
     using System.Net;
@@ -123,3 +124,4 @@
         public Exception Error { get; }
     }
 }
+#endif

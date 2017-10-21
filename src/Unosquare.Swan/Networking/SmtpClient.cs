@@ -1,4 +1,4 @@
-﻿#if !UWP
+﻿#if !UWP && !WINDOWS_UWP
 namespace Unosquare.Swan.Networking
 {
     using System.Threading;
@@ -10,7 +10,7 @@ namespace Unosquare.Swan.Networking
     using System.Text;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-#if !NETSTANDARD1_3 && !UWP
+#if !NETSTANDARD1_3 && !UWP && !WINDOWS_UWP
     using System.Net.Mail;
 #else
     using Exceptions;

@@ -5,7 +5,13 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+#if WINDOWS_UWP
+    using Windows.Security.Cryptography;
+    using Windows.Security.Cryptography.Core;
+    using System.Runtime.InteropServices.WindowsRuntime;
+#else
     using System.Security.Cryptography;
+#endif
     using System.Text;
     using System.Text.RegularExpressions;
 
@@ -14,17 +20,28 @@
     /// </summary>
     public partial class Extensions
     {
-        #region Private Declarations
+#region Private Declarations
 
         private const RegexOptions StandardRegexOptions =
             RegexOptions.Multiline | RegexOptions.Compiled | RegexOptions.CultureInvariant;
 
         private static readonly string[] ByteSuffixes = { "B", "KB", "MB", "GB", "TB" };
 
+#if WINDOWS_UWP
+        private static readonly Lazy<HashAlgorithmProvider> Md5Hasher = new Lazy<HashAlgorithmProvider>(
+            () => HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Md5), true);
+        private static readonly Lazy<HashAlgorithmProvider> SHA1Hasher = new Lazy<HashAlgorithmProvider>(
+            () => HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Sha1), true);
+        private static readonly Lazy<HashAlgorithmProvider> SHA256Hasher = new Lazy<HashAlgorithmProvider>(
+            () => HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Sha256), true);
+        private static readonly Lazy<HashAlgorithmProvider> SHA512Hasher = new Lazy<HashAlgorithmProvider>(
+            () => HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Sha512), true);
+#else
         private static readonly Lazy<MD5> Md5Hasher = new Lazy<MD5>(MD5.Create, true);
         private static readonly Lazy<SHA1> SHA1Hasher = new Lazy<SHA1>(SHA1.Create, true);
         private static readonly Lazy<SHA256> SHA256Hasher = new Lazy<SHA256>(SHA256.Create, true);
         private static readonly Lazy<SHA512> SHA512Hasher = new Lazy<SHA512>(SHA512.Create, true);
+#endif
 
         private static readonly Lazy<Regex> SplitLinesRegex =
             new Lazy<Regex>(
@@ -51,7 +68,7 @@
 
         private static readonly Lazy<string[]> InvalidFilenameChars = new Lazy<string[]>(() => Path.GetInvalidFileNameChars().Select(c => c.ToString()).ToArray());
 
-        #endregion
+#endregion
 
         /// <summary>
         /// Computes the MD5 hash of the given stream.
@@ -91,10 +108,15 @@
                 stream.Position = 0;
                 stream.CopyTo(ms);
 
+#if WINDOWS_UWP
+                return (createHasher ? HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Md5) : Md5Hasher.Value)
+                    .HashData(ms.ToArray().AsBuffer()).ToArray();
+#else
                 return (createHasher ? MD5.Create() : Md5Hasher.Value).ComputeHash(ms.ToArray());
+#endif
             }
 #endif
-        }
+            }
 
         /// <summary>
         /// Computes the MD5 hash of the given string using UTF8 byte encoding.
@@ -115,7 +137,12 @@
         /// <returns>The computed hash code</returns>
         public static byte[] ComputeMD5(this byte[] data, bool createHasher = false)
         {
+#if WINDOWS_UWP
+            return (createHasher ? HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Md5) : Md5Hasher.Value)
+                .HashData(data.AsBuffer()).ToArray();
+#else
             return (createHasher ? MD5.Create() : Md5Hasher.Value).ComputeHash(data);
+#endif
         }
 
         /// <summary>
@@ -130,7 +157,12 @@
         public static byte[] ComputeSha1(this string inputString, bool createHasher = false)
         {
             var inputBytes = Encoding.UTF8.GetBytes(inputString);
+#if WINDOWS_UWP
+            return (createHasher ? HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Sha1) : SHA1Hasher.Value)
+                .HashData(inputBytes.AsBuffer()).ToArray();
+#else
             return (createHasher ? SHA1.Create() : SHA1Hasher.Value).ComputeHash(inputBytes);
+#endif
         }
 
         /// <summary>
@@ -145,7 +177,12 @@
         public static byte[] ComputeSha256(this string inputString, bool createHasher = false)
         {
             var inputBytes = Encoding.UTF8.GetBytes(inputString);
+#if WINDOWS_UWP
+            return (createHasher ? HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Sha256) : SHA256Hasher.Value)
+                .HashData(inputBytes.AsBuffer()).ToArray();
+#else
             return (createHasher ? SHA256.Create() : SHA256Hasher.Value).ComputeHash(inputBytes);
+#endif
         }
 
         /// <summary>
@@ -160,7 +197,12 @@
         public static byte[] ComputeSha512(this string inputString, bool createHasher = false)
         {
             var inputBytes = Encoding.UTF8.GetBytes(inputString);
+#if WINDOWS_UWP
+            return (createHasher ? HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Sha512) : SHA512Hasher.Value)
+                .HashData(inputBytes.AsBuffer()).ToArray();
+#else
             return (createHasher ? SHA512.Create() : SHA512Hasher.Value).ComputeHash(inputBytes);
+#endif
         }
 
         /// <summary>

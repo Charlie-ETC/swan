@@ -1,4 +1,5 @@
-﻿namespace Unosquare.Swan.Abstractions
+﻿#if !WINDOWS_UWP
+namespace Unosquare.Swan.Abstractions
 {
     using System;
     using System.Threading;
@@ -176,3 +177,4 @@
         #endregion
     }
 }
+#endif

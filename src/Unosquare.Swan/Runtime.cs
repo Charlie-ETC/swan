@@ -16,7 +16,7 @@
     /// <summary>
     /// Provides utility methods to retrieve information about the current application
     /// </summary>
-#if !NETSTANDARD1_3 && !UWP
+#if !NETSTANDARD1_3 && !UWP && !WINDOWS_UWP
     public class Runtime : MarshalByRefObject
 #else
     public static class Runtime
@@ -33,18 +33,18 @@
         private static readonly Lazy<Assembly> m_EntryAssembly = new Lazy<Assembly>(Assembly.GetEntryAssembly);
 #endif
 
-#if !NETSTANDARD1_3 && !UWP
+#if !NETSTANDARD1_3 && !UWP && !WINDOWS_UWP
         private static readonly Lazy<AssemblyName> m_EntryAssemblyName =
             new Lazy<AssemblyName>(() => m_EntryAssembly.Value.GetName());
 #endif
 
-#if !UWP
+#if !UWP && !WINDOWS_UWP
         private static readonly Lazy<Process> m_Process = new Lazy<Process>(Process.GetCurrentProcess);
 #endif
         private static readonly Lazy<bool?> m_IsUsingMonoRuntime =
             new Lazy<bool?>(() => Type.GetType("Mono.Runtime") != null);
 
-#if !NETSTANDARD1_3 && !UWP
+#if !NETSTANDARD1_3 && !UWP && !WINDOWS_UWP
         private static readonly Lazy<string> m_CompanyName = new Lazy<string>(() =>
         {
             var attribute =
@@ -65,10 +65,10 @@
                 EntryAssembly.GetCustomAttribute(typeof(AssemblyTrademarkAttribute)) as AssemblyTrademarkAttribute;
             return attribute?.Trademark ?? string.Empty;
         });
-#endif
 
         private static readonly Lazy<ArgumentParser> _argumentParser =
             new Lazy<ArgumentParser>(() => new ArgumentParser());
+#endif
 
         private static readonly Lazy<ObjectMapper> _objectMapper = new Lazy<ObjectMapper>(() => new ObjectMapper());
 
@@ -78,7 +78,7 @@
 
         private static OperatingSystem? m_OS = new OperatingSystem?();
 
-#if !NETSTANDARD1_3 && !UWP
+#if !NETSTANDARD1_3 && !UWP && !WINDOWS_UWP
         private static readonly string ApplicationMutexName = "Global\\{{" + EntryAssembly.FullName + "}}";
 #else
         private const string ApplicationMutexName = "Global\\{{SWANINSTANCE}}";
@@ -116,7 +116,7 @@
             }
         }
 
-#if !UWP
+#if !UWP && !WINDOWS_UWP
         /// <summary>
         /// Gets the process associated with the current application.
         /// </summary>
@@ -143,8 +143,10 @@
                         {
                             // If exception occurred, there is no such mutex.
                             var appMutex = new Mutex(true, ApplicationMutexName);
+#if !WINDOWS_UWP
                             $"Application Mutex created {appMutex} named '{ApplicationMutexName}'".Debug(
                                 typeof(Runtime));
+#endif
 
                             // Only one instance.
                             return true;
@@ -184,7 +186,7 @@
         public static Lazy<FieldTypeCache> FieldTypeCache { get; } =
             new Lazy<FieldTypeCache>(() => new FieldTypeCache());
 
-#if !NETSTANDARD1_3 && !UWP
+#if !NETSTANDARD1_3 && !UWP && !WINDOWS_UWP
         /// <summary>
         /// Gets the assembly that started the application.
         /// </summary>
@@ -236,7 +238,7 @@
         {
             get
             {
-#if !NETSTANDARD1_3 && !UWP
+#if !NETSTANDARD1_3 && !UWP && !WINDOWS_UWP
                 var localAppDataPath =
 #if NET452
                     Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
@@ -270,21 +272,23 @@
         /// </summary>
         public static MessageHub Messages => Container.Resolve<IMessageHub>() as MessageHub;
 
+#if !WINDOWS_UWP
         /// <summary>
         /// Gets the singleton instance created with basic defaults.
         /// </summary>
         public static ArgumentParser ArgumentParser => _argumentParser.Value;
+#endif
 
         /// <summary>
         /// Gets the object mapper instance created with basic defaults.
         /// </summary>
         public static ObjectMapper ObjectMapper => _objectMapper.Value;
 
-        #endregion
+#endregion
 
-        #region Methods
+#region Methods
 
-#if !NETSTANDARD1_3 && !UWP
+#if !NETSTANDARD1_3 && !UWP && !WINDOWS_UWP
         /// <summary>
         /// Writes a standard banner to the standard output
         /// containing the company name, product name, assembly version and trademark.
@@ -315,6 +319,6 @@
         }
 #endif
 
-        #endregion
+#endregion
     }
 }

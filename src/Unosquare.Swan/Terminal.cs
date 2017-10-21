@@ -4,6 +4,9 @@
     using System.Collections.Concurrent;
     using System.Text;
     using System.Threading;
+#if WINDOWS_UWP
+    using System.Threading.Tasks;
+#endif
 
     /// <summary>
     /// A console terminal helper to create nicer output and receive input from the user
@@ -13,7 +16,11 @@
     {
         #region Private Declarations
 
+#if WINDOWS_UWP
+        private static readonly Task DequeueOutputTask;
+#else
         private static readonly Thread DequeueOutputTask;
+#endif
         private static readonly object SyncLock = new object();
         private static readonly ConcurrentQueue<OutputContext> OutputQueue = new ConcurrentQueue<OutputContext>();
 
@@ -22,9 +29,9 @@
 
         private static bool? m_IsConsolePresent;        
 
-        #endregion
+#endregion
 
-        #region Output Context
+#region Output Context
 
         /// <summary>
         /// Represents an asynchronous output context
@@ -43,16 +50,17 @@
                         ? TerminalWriters.Diagnostics
                         : TerminalWriters.None;
             }
-
+            
             public ConsoleColor OriginalColor { get; }
             public ConsoleColor OutputColor { get; set; }
+
             public char[] OutputText { get; set; }
             public TerminalWriters OutputWriters { get; set; }
         }
 
-        #endregion
+#endregion
 
-        #region Constructors
+#region Constructors
 
         /// <summary>
         /// Initializes the <see cref="Terminal"/> class.
@@ -72,6 +80,9 @@
                 }
 
                 // Here we start the output task, fire-and-forget
+#if WINDOWS_UWP
+                DequeueOutputTask = new Task(new Action(DequeueOutputAsync));
+#else
                 DequeueOutputTask = new Thread(DequeueOutputAsync)
                 {
                     IsBackground = true,
@@ -80,14 +91,15 @@
                     Priority = ThreadPriority.BelowNormal
 #endif
                 };
+#endif
 
                 DequeueOutputTask.Start();
             }
         }
 
-        #endregion
+#endregion
         
-        #region Synchronized Cursor Movement
+#region Synchronized Cursor Movement
 
         /// <summary>
         /// Gets or sets the cursor left position.
@@ -146,9 +158,9 @@
             }
         }
 
-        #endregion
+#endregion
 
-        #region Properties
+#region Properties
 
         /// <summary>
         /// Gets a value indicating whether the Console is present
@@ -213,9 +225,9 @@
             set => Console.OutputEncoding = value;
         }
 
-        #endregion
+#endregion
 
-        #region Methods
+#region Methods
 
         /// <summary>
         /// Waits for all of the queued output messages to be written out to the console.
@@ -358,6 +370,6 @@
             }
         }
 
-        #endregion
+#endregion
     }
 }

@@ -59,7 +59,7 @@
             IsValueType = t.GetTypeInfo().IsValueType;
 
             UnderlyingType = IsNullableValueType ?
-                new NullableConverter(Type).UnderlyingType :
+                Nullable.GetUnderlyingType(Type) :
                 Type;
 
             IsNumeric = NumericTypes.Contains(UnderlyingType);
