@@ -13,7 +13,7 @@ namespace System
         public static IO.TextWriter Error { get; set; }
         public static ConsoleColor ForegroundColor { get; set; }
         public static IO.TextWriter Out { get; set; }
-        public static Encoding OutputEncoding { get; set; }
+        public static Encoding OutputEncoding { get => Encoding.UTF8; set { } }
         public static int WindowHeight { get; set; }
 
         public static void ResetColor()
