@@ -10,9 +10,9 @@ namespace System
         public static int CursorLeft { get; set; }
         public static int CursorTop { get; set; }
         public static bool CursorVisible { get; set; }
-        public static IO.TextWriter Error { get; set; }
+        public static IO.TextWriter Error { get => IO.TextWriter.Null; set { } }
         public static ConsoleColor ForegroundColor { get; set; }
-        public static IO.TextWriter Out { get; set; }
+        public static IO.TextWriter Out { get => IO.TextWriter.Null; set { } }
         public static Encoding OutputEncoding { get => Encoding.UTF8; set { } }
         public static int WindowHeight { get; set; }
 
